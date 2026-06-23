@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divya Hanuman Mandir | Chalisa, Bajrang Baan, Stuti, Gita, Sadhana</title>
+  <meta name="description" content="Advanced Hanuman Ji devotional web app with Hanuman Chalisa, Bajrang Baan, Hanuman Stuti, Shri Ramchandra Kripalu, mantras, Gita shlokas, history, stories, images and audio." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cosmic-bg" aria-hidden="true">
+    <div class="sun-orb"></div>
+    <div class="mandala mandala-left"></div>
+    <div class="mandala mandala-right"></div>
+    <div class="smoke smoke-one"></div>
+    <div class="smoke smoke-two"></div>
+    <div id="petals"></div>
+    <div class="ram-loop">
+      <span>श्री राम जय राम जय जय राम • ॐ हनुमते नमः • जय बजरंग बली • पवन तनय संकट हरन • </span>
+      <span>श्री राम जय राम जय जय राम • ॐ हनुमते नमः • जय बजरंग बली • पवन तनय संकट हरन • </span>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <nav class="nav">
+      <button class="brand" data-screen="home" aria-label="Open home">
+        <span class="brand-icon">ॐ</span>
+        <span>
+          <strong>Divya Hanuman Mandir</strong>
+          <small>Chalisa • Bajrang Baan • Stuti • Gita • Sadhana</small>
+        </span>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+
+      <div class="nav-tabs" id="navTabs">
+        <button class="nav-tab active" data-screen="home">Home</button>
+        <button class="nav-tab" data-screen="chalisa">Chalisa</button>
+        <button class="nav-tab" data-screen="stotra">Stotra</button>
+        <button class="nav-tab" data-screen="mantra">Mantra</button>
+        <button class="nav-tab" data-screen="gita">Gita</button>
+        <button class="nav-tab" data-screen="katha">Katha</button>
+        <button class="nav-tab" data-screen="sadhana">Sadhana</button>
+        <button class="nav-tab" data-screen="videos">Videos</button>
+        <button class="nav-tab" data-screen="media">Media</button>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="bellBtn" title="Temple Bell">🔔</button>
+        <button class="icon-btn" id="aartiBtn" title="Aarti Glow">🪔</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="screen active-screen">
+      <div class="hero-grid">
+        <article class="hero-copy glass-card">
+          <span class="badge" id="dayBadge">Sacred Digital Mandir</span>
+          <h1>Jai Shri Ram. Jai Bajrang Bali.</h1>
+          <p>
+            A spiritual animated Hanuman Ji portal with Chalisa recitation, Bajrang Baan,
+            Hanuman Stuti, Sankat Mochan Ashtak, Shri Ramchandra Kripalu Bhajman,
+            mantras, Gita wisdom, Hanuman Ji history, roles, temples, online images,
+            audio support, and daily sadhana tracking.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-screen="chalisa">Start Hanuman Chalisa</button>
+            <button class="ghost-btn" data-screen="stotra">Open Bajrang Baan</button>
+            <button class="ghost-btn" data-screen="katha">Learn Hanuman Ji</button>
+          </div>
+
+          <div class="stats-row">
+            <div><strong id="streakStat">0</strong><span>Daily Streak</span></div>
+            <div><strong id="pathStat">0</strong><span>Paths Done</span></div>
+            <div><strong id="malaStat">0</strong><span>Mala Done</span></div>
+            <div><strong id="todayStat">Today</strong><span>Practice Day</span></div>
+          </div>
+        </article>
+
+        <article class="deity-card glass-card">
+          <div class="deity-ring">
+            <img id="heroImage" alt="Hanuman Ji devotional artwork" />
+            <span class="orbit-dot dot-a"></span>
+            <span class="orbit-dot dot-b"></span>
+            <span class="orbit-dot dot-c"></span>
+          </div>
+          <div class="online-player">
+            <span>Online Devotional Audio</span>
+            <audio id="heroAudio" controls preload="none"></audio>
+            <small>Uses online media where available; bot voice fallback is built in.</small>
+          </div>
+        </article>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card glass-card"><b>🔊</b><h3>Bot Recitation</h3><p>Browser voice reads Hindi/Sanskrit and highlights every line.</p></article>
+        <article class="feature-card glass-card"><b>🎧</b><h3>Online + Local Audio</h3><p>Online audio hub and optional local MP3 clips for each verse.</p></article>
+        <article class="feature-card glass-card"><b>📖</b><h3>Devotional Library</h3><p>Chalisa, Bajrang Baan, Stuti, Ashtak, Aarti and Ram Stuti.</p></article>
+        <article class="feature-card glass-card"><b>🛕</b><h3>Knowledge Tabs</h3><p>History, roles, symbols, stories, temples and daily practice guide.</p></article>
+      </div>
+    </section>
+
+    <section id="chalisa" class="screen">
+      <div class="section-head chalisa-clean-head">
+        <span class="badge">Synced Chalisa Player</span>
+        <h2>श्री हनुमान चालीसा</h2>
+        <p>Press play once. The audio and lyrics move together, and the exact line being sung is highlighted clearly.</p>
+      </div>
+
+      <div class="reader-layout chalisa-reader-layout">
+        <aside class="player-card glass-card chalisa-player-card">
+          <div class="player-topline">
+            <span class="tiny-label">Now Playing</span>
+            <span class="live-pill" id="syncModeLabel"><i></i>Ready</span>
+          </div>
+
+          <div class="live-verse-box" id="liveVerseBox">
+            <h3 id="currentChalisaTitle">Opening Doha</h3>
+            <p id="currentChalisaText">Press play to begin the path.</p>
+          </div>
+
+          <div class="progress-box clean-progress">
+            <div class="progress-bar"><span id="chalisaProgress"></span></div>
+            <div class="progress-meta">
+              <small>Verse <b id="chalisaIndex">1</b>/<b id="chalisaTotal">43</b></small>
+              <small id="chalisaVerseTime">00:00 – 00:00</small>
+            </div>
+          </div>
+
+          <div class="controls clean-controls">
+            <button class="round-btn" id="prevChalisa" title="Previous verse">⏮</button>
+            <button class="play-btn" id="playChalisa" title="Play/Pause">▶</button>
+            <button class="round-btn" id="nextChalisa" title="Next verse">⏭</button>
+          </div>
+
+          <div class="sync-panel clean-sync-panel" id="syncPanel">
+            <audio id="chalisaFullAudio" preload="metadata"></audio>
+            <input id="chalisaSeek" class="simple-seek" type="range" min="0" value="0" step="0.1" />
+            <div class="sync-time-row">
+              <span id="chalisaCurrentTime">00:00</span>
+              <span>Hariharan Chalisa Audio</span>
+              <span id="chalisaDuration">00:00</span>
+            </div>
+          </div>
+
+          <div class="settings-box clean-mode-box">
+            <label>Audio Mode</label>
+            <div class="pill-grid audio-mode-grid">
+              <label><input name="chalisaAudioMode" type="radio" value="full" checked /> Synced Audio</label>
+              <label><input name="chalisaAudioMode" type="radio" value="tts" /> Bot Voice</label>
+              <label><input name="chalisaAudioMode" type="radio" value="clip" /> Verse MP3</label>
+            </div>
+          </div>
+
+          <details class="advanced-settings">
+            <summary>More options</summary>
+            <div class="settings-box">
+              <label for="voiceLang">Voice Language</label>
+              <select id="voiceLang">
+                <option value="hi-IN">Hindi / Sanskrit</option>
+                <option value="en-IN">English India</option>
+                <option value="en-US">English US</option>
+              </select>
+            </div>
+
+            <div class="settings-box">
+              <label for="speedRange">Bot Voice Speed</label>
+              <input id="speedRange" type="range" min="0.55" max="1.25" value="0.82" step="0.02" />
+            </div>
+
+            <div class="settings-box">
+              <label class="sync-offset-label" for="syncOffsetRange">Fine sync offset: <b id="syncOffsetText">0.0s</b></label>
+              <input id="syncOffsetRange" type="range" min="-45" max="45" value="0" step="0.1" />
+              <button class="ghost-btn small full" id="resetSyncOffset" type="button">Reset Sync</button>
+            </div>
+
+            <div class="settings-box checks">
+              <label><input id="autoScroll" type="checkbox" checked /> Auto-scroll active verse</label>
+              <label><input id="repeatVerse" type="checkbox" /> Repeat current verse</label>
+            </div>
+          </details>
+
+          <button class="primary-btn full" id="completeChalisa">Mark Chalisa Complete</button>
+        </aside>
+
+        <div class="content-panel chalisa-content-panel">
+          <div class="toolbar glass-card chalisa-toolbar">
+            <div class="search-box"><span>🔍</span><input id="chalisaSearch" placeholder="Search verse, Ram, Lanka, Sankat..." /></div>
+            <select id="chalisaView">
+              <option value="all">Hindi + English + Meaning</option>
+              <option value="dev">Hindi/Sanskrit only</option>
+              <option value="roman">English transliteration only</option>
+              <option value="meaning">Meaning only</option>
+            </select>
+            <button class="ghost-btn small" id="fontPlus">A+</button>
+            <button class="ghost-btn small" id="fontMinus">A-</button>
+          </div>
+          <div class="list-guide glass-card">
+            <b>Live Highlight</b>
+            <span>The glowing verse and golden line show exactly what is being recited.</span>
+          </div>
+          <div id="chalisaList" class="text-list chalisa-text-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stotra" class="screen">
+      <div class="section-head">
+        <span class="badge">Devotional Text Library</span>
+        <h2>Bajrang Baan, Hanuman Stuti, Ram Stuti & More</h2>
+        <p>Switch any path, read meaning, search lines, copy text, and play with bot voice.</p>
+      </div>
+
+      <div class="library-layout">
+        <aside class="library-menu glass-card">
+          <h3>Path Library</h3>
+          <div id="stotraMenu"></div>
+        </aside>
+        <div>
+          <article class="stotra-header glass-card">
+            <div>
+              <span class="badge" id="stotraType">Stotra</span>
+              <h2 id="stotraTitle">Bajrang Baan</h2>
+              <p id="stotraDesc">Powerful protective prayer to Hanuman Ji.</p>
+            </div>
+            <div class="controls compact">
+              <button class="round-btn" id="prevStotra">⏮</button>
+              <button class="play-btn" id="playStotra">▶</button>
+              <button class="round-btn" id="nextStotra">⏭</button>
+            </div>
+          </article>
+
+          <div class="toolbar glass-card">
+            <div class="search-box"><span>🔍</span><input id="stotraSearch" placeholder="Search inside selected path..." /></div>
+            <select id="stotraView">
+              <option value="all">Text + Meaning</option>
+              <option value="text">Text only</option>
+              <option value="meaning">Meaning only</option>
+            </select>
+          </div>
+          <div id="stotraLines" class="text-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mantra" class="screen">
+      <div class="section-head">
+        <span class="badge">Jap & Mantra</span>
+        <h2>Hanuman Mantra Sadhana</h2>
+        <p>Select mantra, speak it, count 108 jap, and save mala progress.</p>
+      </div>
+
+      <div class="mantra-layout">
+        <div id="mantraGrid" class="mantra-grid"></div>
+        <aside class="japa-card glass-card">
+          <span class="badge">Digital Mala</span>
+          <h3 id="selectedMantraTitle">ॐ हनुमते नमः</h3>
+          <p id="selectedMantraText">Om Hanumate Namah</p>
+          <button class="mala-circle" id="malaButton"><strong id="japaCount">0</strong><span>/108</span></button>
+          <div class="controls">
+            <button class="round-btn" id="resetJapa">↺</button>
+            <button class="play-btn" id="speakMantra">▶</button>
+            <button class="round-btn" id="addJapa">+1</button>
+          </div>
+          <button class="primary-btn full" id="saveMala">Save Mala</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="gita" class="screen">
+      <div class="section-head">
+        <span class="badge">Bhagavad Gita Wisdom</span>
+        <h2>गीता श्लोक — Sanskrit, Hindi & English</h2>
+        <p>Expanded Gita tab with key shlokas across all 18 chapters, Sanskrit, Hindi meaning, English meaning and voice support.</p>
+      </div>
+
+      <div class="gita-layout">
+        <aside class="chapter-menu glass-card">
+          <h3>18 Chapters</h3>
+          <div id="chapterButtons"></div>
+        </aside>
+        <div>
+          <div class="toolbar glass-card">
+            <div class="search-box"><span>🔍</span><input id="gitaSearch" placeholder="Search karma, dharma, bhakti, आत्मा..." /></div>
+            <button class="ghost-btn" id="speakGita">Speak Selected</button>
+          </div>
+          <div id="gitaList" class="text-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="katha" class="screen">
+      <div class="section-head">
+        <span class="badge">Learn Hanuman Ji</span>
+        <h2>History, Roles, Symbols & Teachings</h2>
+        <p>Deep, simple and devotional knowledge cards covering Hanuman Ji’s story, symbols, sadhana meaning, Ramayana role, temples and life lessons.</p>
+      </div>
+
+      <div class="knowledge-layout">
+        <aside class="timeline-card glass-card">
+          <h3>Ramayana Journey Timeline</h3>
+          <div id="timelineList"></div>
+        </aside>
+        <div id="knowledgeGrid" class="knowledge-grid"></div>
+      </div>
+
+      <article class="gallery-card glass-card bhakti-guide-card">
+        <div class="gallery-head">
+          <div><h3>How to Study Hanuman Ji</h3><p>A small user guide to use this knowledge section in a calm devotional way.</p></div>
+        </div>
+        <div id="hanumanStudyGuide" class="study-guide-list"></div>
+      </article>
+
+      <article class="gallery-card glass-card">
+        <div class="gallery-head">
+          <div><h3>Online Hanuman Ji Image Gallery</h3><p>Images load from online public/free sources. You can replace URLs in <code>data.js</code>.</p></div>
+        </div>
+        <div id="imageGallery" class="image-gallery"></div>
+      </article>
+    </section>
+
+    <section id="sadhana" class="screen">
+      <div class="section-head">
+        <span class="badge">Daily Devotion</span>
+        <h2>Sadhana Dashboard</h2>
+        <p>Make it useful daily with sankalp, Tuesday path, Saturday path, chakra flow, temples and practice guide.</p>
+      </div>
+
+      <div class="sadhana-grid">
+        <article class="glass-card practice-card"><h3>Today’s Sankalp</h3><textarea id="sankalpText" placeholder="Write your prayer, gratitude, or sankalp..."></textarea><button class="primary-btn" id="saveSankalp">Save Sankalp</button></article>
+        <article class="glass-card practice-card"><h3>Recommended Practice</h3><div id="practicePlan"></div></article>
+        <article class="glass-card practice-card"><h3>Chakra of Life</h3><div id="chakraList"></div></article>
+        <article class="glass-card practice-card"><h3>Hanuman Ji Temples & Places</h3><div id="templeList"></div></article>
+      </div>
+    </section>
+
+
+    <section id="videos" class="screen">
+      <div class="section-head video-section-head">
+        <span class="badge">Animated Bhakti Videos</span>
+        <h2>हनुमान जी Animated Darshan</h2>
+        <p>A calm bhakti video player where your uploaded song plays as the main sound with smooth seek, glow and restart controls.</p>
+      </div>
+
+      <div class="video-darshan-layout">
+        <article class="glass-card video-player-card">
+          <div class="video-frame-wrap">
+            <video id="hanumanVideo" class="hanuman-video" preload="metadata" muted playsinline poster="" aria-label="Animated Hanuman Ji video"></video>
+            <div class="video-glow-ring"></div>
+            <div class="video-overlay-mantra" id="videoMantra">श्री रघुवर की वानर सेना</div>
+          </div>
+
+          <div class="video-controls-card">
+            <div class="video-title-row">
+              <div>
+                <span class="tiny-label" id="videoSubtitle">Rama Setu • Vanar Sena • Bhakti Audio</span>
+                <h3 id="videoTitle">Rama Setu — Vanar Sena Bhakti Animation</h3>
+              </div>
+              <span class="live-pill"><i></i>Bhakti Mode</span>
+            </div>
+
+            <input id="hanumanVideoSeek" class="simple-seek video-seek" type="range" min="0" value="0" step="0.1" />
+            <div class="sync-time-row">
+              <span id="hanumanVideoCurrent">00:00</span>
+              <span>श्री राम जय राम जय जय राम</span>
+              <span id="hanumanVideoDuration">00:00</span>
+            </div>
+
+            <div class="video-action-row">
+              <button class="primary-btn" id="playHanumanVideo" type="button">▶ Play Bhakti Video</button>
+              <button class="ghost-btn" id="restartHanumanVideo" type="button">Restart</button>
+              <label class="volume-chip">Volume <input id="hanumanVideoVolume" type="range" min="0" max="1" value="1" step="0.05" /></label>
+            </div>
+
+            <audio id="hanumanVideoAudio" preload="metadata"></audio>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="media" class="screen">
+      <div class="section-head">
+        <span class="badge">Audio & Image Hub</span>
+        <h2>Online Media + Your Own Audio Clips</h2>
+        <p>Online audio where available, local MP3 support, text-to-speech, image gallery and source credits.</p>
+      </div>
+
+      <div class="media-grid">
+        <article class="glass-card media-card"><h3>Online Audio Player</h3><p>This uses a public online audio URL where available. Browser/network support can vary, so bot voice is always the backup.</p><audio id="onlineAudio" controls preload="none"></audio><div id="audioSources"></div></article>
+        <article class="glass-card media-card"><h3>Add Verse-wise MP3</h3><ol><li>Put files in <code>assets/audio/chalisa/</code>.</li><li>Name them <code>001.mp3</code> to <code>043.mp3</code>.</li><li>Select <b>Verse MP3</b> in the Chalisa player.</li><li>For stotra audio, add paths in <code>data.js</code>.</li></ol></article>
+        <article class="glass-card media-card"><h3>Sources & Credits</h3><div id="creditsList"></div></article>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
